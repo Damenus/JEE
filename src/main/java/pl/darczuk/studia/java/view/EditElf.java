@@ -89,8 +89,7 @@ public class EditElf implements Serializable {
     }
 
     public String saveElf() {
-        forestService.saveElf(elf, forest.getId());
-        //forest.saveElf(elf);
+        forestService.saveElf(elf, forestId);
         return "index?faces-redirect=true";
     }
 

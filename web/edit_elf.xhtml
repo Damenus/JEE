@@ -28,25 +28,20 @@
                 <h:message for="numberArrows"/>
 
                 <h:outputLabel value="Luk:" for="typeBow"/>
-
                 <h:selectOneListbox id="typeBow" value="#{editElf.elf.typeBow}">
                     <f:selectItems value="#{editElf.typeBowAsSelectItem}" />
                 </h:selectOneListbox>
-
                 <h:message for="typeBow"/>
 
                 <h:outputLabel value="Las:" for="forestId"/>
-
-                <h:selectOneListbox id="forestId" value="#{editElf.forestId}">
+                <h:selectOneListbox id="forestId" value="#{editElf.forestId}" converter="#{elfConverter}">
                     <f:selectItems value="#{editElf.forestsAsSelectItem}" />
                 </h:selectOneListbox>
-
                 <h:message for="forestId"/>
 
             </h:panelGrid>
 
-            <h:commandButton value="Zapisz" action="#{editElf.saveElf()}">
-            </h:commandButton>
+            <h:commandButton value="Zapisz" action="#{editElf.saveElf()}"/>
 
         </h:form>
         <h:button value="Powrót" outcome="index.xhtml"/>
