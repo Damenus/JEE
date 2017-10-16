@@ -1,6 +1,7 @@
 package pl.darczuk.studia.java.view;
 
 import pl.darczuk.studia.java.ForestService;
+import pl.darczuk.studia.java.entities.Elf;
 import pl.darczuk.studia.java.entities.Forest;
 
 import javax.faces.bean.ManagedBean;
@@ -26,4 +27,10 @@ public class ListForests implements Serializable {
         }
         return forests;
     }
+
+    public void removeForest(Forest forest) {
+        forestService.removeForest(forest);
+        forests.remove(forest);
+    }
+
 }

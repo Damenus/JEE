@@ -19,8 +19,11 @@ public class ForestService implements Serializable {
         Elf elf1 = new Elf(1,"Rosh",13, Bow.EPIC);
         Elf elf2 = new Elf(1,"Lula",11, Bow.EPIC);
 
-        Forest forest1 = new Forest(1,1000,asList(elf1));
-        Forest forest2 = new Forest(2,10,asList(elf2));
+        Forest forest1 = new Forest(1,1000);
+        Forest forest2 = new Forest(2,10);
+
+        forest1.saveElf(elf1);
+        forest2.saveElf(elf2);
 
         forests = new TreeMap<>();
         forests.put(forest1.getId(), forest1);
@@ -37,7 +40,21 @@ public class ForestService implements Serializable {
         return new ArrayList<>(forests.values());
     }
 
-    public void removeForest(Forest forest) {
+    public Forest findForest(int forestId) { return forests.get(forestId); }
+
+    public void saveForest(Forest forest) {
+        if (forest.getId() == 0) {
+            forest.setId(forests.lastKey() + 1);
+        }
+        forests.put(forest.getId(), forest);
+    }
+
+    public void saveElf(Elf elf, int forestID) {
+        findForest(forestID).saveElf(elf);
+    }
+
+    public String removeForest(Forest forest) {
         forests.remove(forest.getId());
+        return "index?faces-redirect=true";
     }
 }

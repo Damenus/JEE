@@ -15,7 +15,7 @@
             </h:column>
 
             <h:column>
-                <h:dataTable value="#{forest.comando}" var="elf">
+                <h:dataTable value="#{forest.elfs}" var="elf">
                     <h:column>
                         <h:outputText value="#{elf.id}"/>
                     </h:column>
@@ -31,6 +31,7 @@
                     <h:column>
                         <h:button value="Edytuj" outcome="edit_elf.xhtml">
                             <f:param name="elfId" value="#{elf.id}"/>
+                            <f:param name="forestId" value="#{forest.id}"/>
                         </h:button>
                     </h:column>
                     <h:column>
