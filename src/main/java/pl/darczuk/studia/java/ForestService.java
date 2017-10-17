@@ -50,7 +50,7 @@ public class ForestService implements Serializable {
     }
 
     public void saveElf(Elf elf, int oldForestId, int forestId) {
-        if (forestId == oldForestId)
+        if (forestId == oldForestId || oldForestId == 0)
             findForest(forestId).saveElf(elf, forestId);
         else {
             Elf celf = new Elf(elf.getId(), elf.getName(), elf.getNumberArrows(), elf.getTypeBow());

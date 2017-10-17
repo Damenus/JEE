@@ -33,7 +33,8 @@ public class ForestConverter implements Converter {
         if ("---".equals(s)) {
             return null;
         }
-        return forestService.findForest(Integer.parseInt(s));
+
+        return  Integer.parseInt(s);
     }
 
     @Override
@@ -41,6 +42,6 @@ public class ForestConverter implements Converter {
         if (o == null) {
             return "---";
         }
-        return ((Forest) o).getId() + "";
+        return String.valueOf(((int) o));
     }
 }
