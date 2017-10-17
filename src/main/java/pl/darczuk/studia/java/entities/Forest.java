@@ -25,8 +25,9 @@ public class Forest {
         this.setNumberTrees(numberTrees);
     }
 
-    public void removeElf(Elf elf) {
+    public String removeElf(Elf elf) {
         comando.remove(elf.getId());
+        return "index?faces-redirect=true";
     }
 
     public void saveElf(Elf elf, int forestId) {

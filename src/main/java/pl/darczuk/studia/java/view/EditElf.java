@@ -96,4 +96,8 @@ public class EditElf implements Serializable {
        return "index?faces-redirect=true";
     }
 
+    public String deleteElf() {
+        return "index?faces-redirect=true";
+    }
+
 }
