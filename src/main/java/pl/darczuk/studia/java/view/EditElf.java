@@ -56,7 +56,7 @@ public class EditElf implements Serializable {
         if (forestsAsSelectItem == null) {
             forestsAsSelectItem = new ArrayList<>();
             for (Forest forest : forestService.findAllForest()) {
-                forestsAsSelectItem.add(new SelectItem(forest.getId(), String.valueOf(forest.getId())));
+                forestsAsSelectItem.add(new SelectItem(forest, String.valueOf(forest.getId())));
             }
         }
         return forestsAsSelectItem;
@@ -89,7 +89,7 @@ public class EditElf implements Serializable {
     }
 
     public String saveElf() {
-        forestService.saveElf(elf, forestId);
+        forestService.saveElf(elf, forest.getId(), forestId);
         return "index?faces-redirect=true";
     }
 

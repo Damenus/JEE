@@ -4,6 +4,7 @@ import pl.darczuk.studia.java.ForestService;
 import pl.darczuk.studia.java.entities.Elf;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -13,7 +14,7 @@ import javax.faces.convert.Converter;
 @RequestScoped
 public class ElfConverter implements Converter {
 
-    @ManagedBean("#{forestService}")
+    @ManagedProperty("#{forestService}")
     private ForestService forestService;
 
     public void setForestService(ForestService forestService) { this.forestService = forestService; }

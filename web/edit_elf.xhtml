@@ -34,7 +34,7 @@
                 <h:message for="typeBow"/>
 
                 <h:outputLabel value="Las:" for="forestId"/>
-                <h:selectOneListbox id="forestId" value="#{editElf.forestId}" converter="#{elfConverter}">
+                <h:selectOneListbox id="forestId" value="#{editElf.forestId}" converter="#{forestConverter}">
                     <f:selectItems value="#{editElf.forestsAsSelectItem}" />
                 </h:selectOneListbox>
                 <h:message for="forestId"/>

@@ -22,8 +22,8 @@ public class ForestService implements Serializable {
         Forest forest1 = new Forest(1,1000);
         Forest forest2 = new Forest(2,10);
 
-        forest1.saveElf(elf1);
-        forest2.saveElf(elf2);
+        forest1.saveElf(elf1, forest1.getId());
+        forest2.saveElf(elf2, forest2.getId());
 
         forests = new TreeMap<>();
         forests.put(forest1.getId(), forest1);
@@ -49,8 +49,14 @@ public class ForestService implements Serializable {
         forests.put(forest.getId(), forest);
     }
 
-    public void saveElf(Elf elf, int forestID) {
-        findForest(forestID).saveElf(elf);
+    public void saveElf(Elf elf, int oldForestId, int forestId) {
+        if (forestId == oldForestId)
+            findForest(forestId).saveElf(elf, forestId);
+        else {
+            Elf celf = new Elf(elf.getId(), elf.getName(), elf.getNumberArrows(), elf.getTypeBow());
+            findForest(forestId).saveElf(celf, oldForestId);
+            findForest(oldForestId).removeElf(elf);
+        }
     }
 
     public String removeForest(Forest forest) {

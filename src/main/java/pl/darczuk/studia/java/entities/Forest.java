@@ -29,11 +29,21 @@ public class Forest {
         comando.remove(elf.getId());
     }
 
-    public void saveElf(Elf elf) {
+    public void saveElf(Elf elf, int forestId) {
         if (elf.getId() == 0) {
-            elf.setId(comando.lastKey() + 1);
+            if(comando.isEmpty() == false) {
+                elf.setId(comando.lastKey() + 1);
+            } else
+                elf.setId(1);
         }
-        comando.put(elf.getId(), elf);
+
+        if (this.id == forestId) {
+            comando.put(elf.getId(), elf);
+        } else {
+            elf.setId(comando.lastKey() + 1);
+            comando.put(elf.getId(), elf);
+        }
+
     }
 
     public List<Elf> getElfs() { return new ArrayList<>(comando.values()); }
