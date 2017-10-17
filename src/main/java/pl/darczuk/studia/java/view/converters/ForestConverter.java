@@ -42,6 +42,7 @@ public class ForestConverter implements Converter {
         if (o == null) {
             return "---";
         }
+
         return String.valueOf(((int) o));
     }
 }
