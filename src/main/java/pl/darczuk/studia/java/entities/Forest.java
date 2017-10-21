@@ -2,10 +2,7 @@ package pl.darczuk.studia.java.entities;
 
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 import javax.persistence.*;
 
 @ToString
@@ -19,23 +16,39 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(
                 name = Forest.FIND_ALL,
-                query = "SELECT b FROM Forest b"
+                query = "SELECT f FROM Forest f"
+        ),
+        @NamedQuery(
+                name = Forest.FIND_BY_NAME,
+                query = "SELECT f FROM Forest f WHERE f.id = :id"
+        ),
+        @NamedQuery(
+                name = Forest.REMOVE_BY_ID,
+                query = "DELETE FROM Forest f WHERE f.id = :id"
+        ),
+        @NamedQuery(
+                name = Forest.INSERT,
+                query = "INSERT INTO Forest f WHERE f.id = :id"
         )
 })
 public class Forest {
 
-    public static final String FIND_ALL = "Book.findAll";
+    public static final String FIND_ALL = "Forest.findAll";
+    public static final String FIND_BY_NAME = "Forest.findByName";
+    public static final String REMOVE_BY_ID = "Forest.removeById";
+    public static final String INSERT = "Forest.insert";
+
 
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column
     private int numberTrees;
 
     @OneToMany
-    private SortedMap<Integer, Elf> comando = new TreeMap<>();
+    private Map<Integer, Elf> comando = new TreeMap<>();
 
     public Forest(int id, int numberTrees) {
         this.setId(id);
@@ -48,19 +61,19 @@ public class Forest {
     }
 
     public void saveElf(Elf elf, int forestId) {
-        if (elf.getId() == 0) {
-            if(comando.isEmpty() == false) {
-                elf.setId(comando.lastKey() + 1);
-            } else
-                elf.setId(1);
-        }
-
-        if (this.id == forestId) {
-            comando.put(elf.getId(), elf);
-        } else {
-            elf.setId(comando.lastKey() + 1);
-            comando.put(elf.getId(), elf);
-        }
+//        if (elf.getId() == 0) {
+//            if(comando.isEmpty() == false) {
+//                elf.setId(comando.lastKey() + 1);
+//            } else
+//                elf.setId(1);
+//        }
+//
+//        if (this.id == forestId) {
+//            comando.put(elf.getId(), elf);
+//        } else {
+//            elf.setId(comando.lastKey() + 1);
+//            comando.put(elf.getId(), elf);
+//        }
 
     }
 

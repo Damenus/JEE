@@ -21,7 +21,7 @@ public class Elf {
     @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column
     private String name;
