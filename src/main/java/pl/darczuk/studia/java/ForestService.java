@@ -52,13 +52,37 @@ public class ForestService implements Serializable {
     }
 
     public void saveElf(Elf elf, int oldForestId, int forestId) {
-        if (forestId == oldForestId || oldForestId == 0)
-            findForest(forestId).saveElf(elf, forestId);
-        else {
-            Elf celf = new Elf(elf.getId(), elf.getName(), elf.getNumberArrows(), elf.getTypeBow());
-            findForest(forestId).saveElf(celf, oldForestId);
-            findForest(oldForestId).removeElf(elf);
-        }
+        transactional(() -> {
+            if (elf.getId() == null) {
+                em.persist(elf);
+            } else {
+                em.merge(elf);
+            }
+        });
+
+
+//        // check if elf need to be move to another forest
+//        Forest f;
+//        // new elf or stay in this same forest
+//        if (forestId == oldForestId || oldForestId == 0)
+//            f = findForest(forestId);
+//            transactional(()->);
+//        // move to another forest
+//        else {
+//            Elf celf = new Elf(elf.getId(), elf.getName(), elf.getNumberArrows(), elf.getTypeBow());
+//            findForest(forestId).saveElf(celf, oldForestId);
+//            findForest(oldForestId).removeElf(elf);
+//        }
+
+
+//
+//        if (forestId == oldForestId || oldForestId == 0)
+//            findForest(forestId).saveElf(elf, forestId);
+//        else {
+//            Elf celf = new Elf(elf.getId(), elf.getName(), elf.getNumberArrows(), elf.getTypeBow());
+//            findForest(forestId).saveElf(celf, oldForestId);
+//            findForest(oldForestId).removeElf(elf);
+//        }
     }
 
     public String removeForest(Forest forest) {

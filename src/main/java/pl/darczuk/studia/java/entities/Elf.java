@@ -31,4 +31,8 @@ public class Elf {
 
     @Enumerated(EnumType.STRING)
     private Bow typeBow;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "forest_id", nullable = false)
+    private Forest forest;
 }

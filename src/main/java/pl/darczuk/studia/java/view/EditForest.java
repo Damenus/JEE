@@ -55,4 +55,5 @@ public class EditForest implements Serializable {
         forestService.saveForest(forest);
         return "index?faces-redirect=true";
     }
+
 }

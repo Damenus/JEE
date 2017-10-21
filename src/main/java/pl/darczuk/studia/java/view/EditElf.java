@@ -56,7 +56,7 @@ public class EditElf implements Serializable {
         if (forestsAsSelectItem == null) {
             forestsAsSelectItem = new ArrayList<>();
             for (Forest forest : forestService.findAllForest()) {
-                forestsAsSelectItem.add(new SelectItem(forest.getId(), String.valueOf(forest.getId())));
+                forestsAsSelectItem.add(new SelectItem(forest, String.valueOf(forest.getId())));
             }
         }
         return forestsAsSelectItem;
@@ -73,31 +73,32 @@ public class EditElf implements Serializable {
     }
 
     public void init() {
-        if (elf == null && elfId != 0) {
-            forest = forestService.findForest(forestId);
-            elf = forestService.findForest(forestId).findElf(elfId);
-        } else if (elf == null && elfId == 0) {
-            elf = new Elf();
-        }
         if (elf == null) {
-            try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("error/404.xhtml");
-            } catch (IOException ex) {
-                log.log(Level.SEVERE, null, ex);
-            }
+            elf = new Elf();
+            forest = forestService.findForest(forestId);
         }
+//        if (elf == null && elfId != 0) {
+//            forest = forestService.findForest(forestId);
+//            elf = forestService.findForest(forestId).findElf(elfId);
+//        } else if (elf == null && elfId == 0) {
+//            elf = new Elf();
+//        }
+//        if (elf == null) {
+//            try {
+//                FacesContext.getCurrentInstance().getExternalContext().redirect("error/404.xhtml");
+//            } catch (IOException ex) {
+//                log.log(Level.SEVERE, null, ex);
+//            }
+//        }
     }
 
     public String saveElf() {
        if (forest != null)
             forestService.saveElf(elf, forest.getId(), forestId);
        else
+            elf.getForest().saveElf(elf, 0);
             forestService.saveElf(elf, 0, forestId);
        return "index?faces-redirect=true";
-    }
-
-    public String deleteElf() {
-        return "index?faces-redirect=true";
     }
 
 }

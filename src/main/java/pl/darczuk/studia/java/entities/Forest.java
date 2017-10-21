@@ -2,6 +2,7 @@ package pl.darczuk.studia.java.entities;
 
 import lombok.*;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import javax.persistence.*;
 
@@ -43,8 +44,13 @@ public class Forest {
     @Column
     private int numberTrees;
 
-    @OneToMany
-    private Map<Integer, Elf> comando = new TreeMap<>();
+    @OneToMany(mappedBy = "forest")
+//    @JoinTable(name = "forests_elfs",
+//            joinColumns = {
+//                    @JoinColumn(name = "elfs", referencedColumnName = "id")},
+//            inverseJoinColumns = {
+//                    @JoinColumn(name = "forests", referencedColumnName = "id")})
+    private List<Elf> elfs;
 
     public Forest(int id, int numberTrees) {
         this.setId(id);
@@ -52,18 +58,19 @@ public class Forest {
     }
 
     public String removeElf(Elf elf) {
-        comando.remove(elf.getId());
+        elfs.remove(elf);
         return "index?faces-redirect=true";
     }
 
     public void saveElf(Elf elf, int forestId) {
-//        if (elf.getId() == 0) {
+        elfs.add(elf);
+//        if (elf.getId() == null) {
 //            if(comando.isEmpty() == false) {
 //                elf.setId(comando.lastKey() + 1);
 //            } else
 //                elf.setId(1);
 //        }
-//
+
 //        if (this.id == forestId) {
 //            comando.put(elf.getId(), elf);
 //        } else {
@@ -73,7 +80,7 @@ public class Forest {
 
     }
 
-    public List<Elf> getElfs() { return new ArrayList<>(comando.values()); }
+    public List<Elf> getElfs() { return elfs; }
 
-    public Elf findElf(int id) { return comando.get(id); }
+    public Elf findElf(int id) { return elfs.get(id); }
 }

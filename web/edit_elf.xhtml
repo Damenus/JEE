@@ -8,6 +8,7 @@
     <f:metadata>
         <f:viewParam name="elfId" value="#{editElf.elfId}" />
         <f:viewParam name="forestId" value="#{editElf.forestId}" />
+        <f:viewParam name="forest" value="#{editElf.forest}" />
         <f:event type="preRenderView" listener="#{editElf.init()}"/>
     </f:metadata>
     <h:head>
@@ -33,11 +34,11 @@
                 </h:selectOneListbox>
                 <h:message for="typeBow"/>
 
-                <h:outputLabel value="Las:" for="forestId"/>
-                <h:selectOneListbox id="forestId" value="#{editElf.forestId}" converter="#{forestConverter}">
+                <h:outputLabel value="Las:" for="forests"/>
+                <h:selectOneListbox id="forests" value="#{editElf.elf.forest}" converter="#{forestConverter}">
                     <f:selectItems value="#{editElf.forestsAsSelectItem}" />
                 </h:selectOneListbox>
-                <h:message for="forestId"/>
+                <h:message for="forests"/>
 
             </h:panelGrid>
 
