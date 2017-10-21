@@ -87,7 +87,26 @@ public class ForestService implements Serializable {
 
     public String removeForest(Forest forest) {
 //      em.createNamedQuery(Forest.REMOVE_BY_ID, Forest.class).setParameter(forest.getId(), "id"); --> not corect without transaction
-        transactional(()-> em.remove(em.merge(forest)));
+//        List<Elf> elfs = em.createNamedQuery(Elf.FIND_BY_ID_FOREST, Elf.class).setParameter(forest.getId(), "id").getResultList();
+//        for (Elf elf : elfs) {
+//            em.remove(elf);
+//        }
+        try {
+            for (Elf elf : forest.getElfs()) {
+                transactional(() -> em.remove(em.merge(elf)));
+            }
+        }
+        finally {
+            transactional(()-> em.remove(em.merge(forest)));
+        }
+
+
+        return "index?faces-redirect=true";
+    }
+
+
+    public String removeElf(Elf elf) {
+        transactional(()-> em.remove(em.merge(elf)));
         return "index?faces-redirect=true";
     }
 

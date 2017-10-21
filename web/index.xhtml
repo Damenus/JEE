@@ -32,12 +32,12 @@
                         <h:button value="Edytuj" outcome="edit_elf.xhtml">
                             <f:param name="elfId" value="#{elf.id}"/>
                             <f:param name="forestId" value="#{forest.id}"/>
-                            <f:param name="forest" value="#{forest}"/>
+                            <!--<f:param name="forest" value="#{forest}"/>-->
                         </h:button>
                     </h:column>
                     <h:column>
                         <h:form>
-                            <h:commandButton value="Usuń" action="#{forest.removeElf(elf)}"/>
+                            <h:commandButton value="Usuń" action="#{forestService.removeElf(elf)}"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>
