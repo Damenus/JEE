@@ -25,10 +25,6 @@ import javax.persistence.*;
         @NamedQuery(
                 name = Forest.REMOVE_BY_ID,
                 query = "DELETE FROM Forest f WHERE f.id = :id"
-        ),
-        @NamedQuery(
-                name = Forest.INSERT,
-                query = "INSERT INTO Forest f WHERE f.id = :id"
         )
 })
 public class Forest {
