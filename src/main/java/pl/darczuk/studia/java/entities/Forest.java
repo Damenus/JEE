@@ -6,18 +6,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
+import javax.persistence.*;
 
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Entity
+@Table(name="forests")
+@NamedQueries({
+        @NamedQuery(
+                name = Forest.FIND_ALL,
+                query = "SELECT b FROM Forest b"
+        )
+})
 public class Forest {
+
+    public static final String FIND_ALL = "Book.findAll";
+
+    @Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column
     private int numberTrees;
 
+    @OneToMany
     private SortedMap<Integer, Elf> comando = new TreeMap<>();
 
     public Forest(int id, int numberTrees) {
