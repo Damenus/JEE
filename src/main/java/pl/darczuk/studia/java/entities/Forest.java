@@ -20,7 +20,7 @@ import javax.persistence.*;
                 query = "SELECT f FROM Forest f"
         ),
         @NamedQuery(
-                name = Forest.FIND_BY_NAME,
+                name = "findByName",
                 query = "SELECT f FROM Forest f WHERE f.id = :id"
         ),
         @NamedQuery(
@@ -28,6 +28,7 @@ import javax.persistence.*;
                 query = "DELETE FROM Forest f WHERE f.id = :id"
         )
 })
+// Query query = session.getNamedQuery("findByName").setString("id", "7277");
 public class Forest {
 
     public static final String FIND_ALL = "Forest.findAll";
