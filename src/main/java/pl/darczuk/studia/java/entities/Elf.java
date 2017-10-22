@@ -15,12 +15,10 @@ import java.awt.print.Book;
 @Table(name = "elfs")
 @NamedQueries({
         @NamedQuery(name = Elf.FIND_ALL, query = "SELECT e FROM Elf e"),
-        @NamedQuery(name = Elf.FIND_BY_ID_FOREST, query = "SELECT e FROM Elf e WHERE e.forest.id = :id")
 })
 public class Elf {
 
     public static final String FIND_ALL = "Elf.findAll";
-    public static final String FIND_BY_ID_FOREST = "Elf.findByIdForest";
 
     @Column
     @Id

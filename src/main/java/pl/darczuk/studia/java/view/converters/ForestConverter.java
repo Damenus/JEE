@@ -33,18 +33,15 @@ public class ForestConverter implements Converter {
         if (s == null) {
             return null;
         }
-//        if ("---".equals(s)) {
-//            return null;
-//        }
 
-        Forest f = forestService.findForest(Integer.valueOf(s));
+        Forest forest = forestService.findForest(Integer.valueOf(s));
 
-        if (f == null) {
+        if (forest == null) {
             facesContext.getExternalContext().setResponseStatus(HttpServletResponse.SC_NOT_FOUND);
             facesContext.responseComplete();
         }
 
-        return f;
+        return forest;
     }
 
     @Override
@@ -52,25 +49,7 @@ public class ForestConverter implements Converter {
         if (o == null) {
             return null;
         }
-
-        return String.valueOf(((Forest) o).getId());
+        Forest forest = (Forest) o;
+        return forest.getId() != null ? Integer.toString(forest.getId()) : null;
     }
 }
-
-//    @Override
-//    public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-//        if ("---".equals(s)) {
-//            return null;
-//        }
-//        Forest f = forestService.findForest(Integer.valueOf(s));
-//        return f;
-//    }
-//
-//    @Override
-//    public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
-//        if (o == null) {
-//            return "---";
-//        }
-//        Integer i = forestService.findForest(((Integer) o)).getId();
-//        return String.valueOf(i); // String.valueOf(((Forest) o).getId());
-//    }

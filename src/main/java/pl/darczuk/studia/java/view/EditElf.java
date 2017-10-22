@@ -5,11 +5,9 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +21,7 @@ import pl.darczuk.studia.java.entities.Forest;
 @ManagedBean
 @Log
 public class EditElf implements Serializable {
+
     @ManagedProperty("#{forestService}")
     private ForestService forestService;
 
@@ -39,6 +38,12 @@ public class EditElf implements Serializable {
     private List<SelectItem> typeBowAsSelectItem;
 
     public void setForestService(ForestService forestService) {this.forestService = forestService; }
+
+    public void init() {
+        if (elf == null) {
+            elf = new Elf();
+        }
+    }
 
     public List<SelectItem> getForestsAsSelectItem() {
         if (forestsAsSelectItem == null) {
@@ -60,35 +65,7 @@ public class EditElf implements Serializable {
         return typeBowAsSelectItem;
     }
 
-    public List<Forest> getAvailableForests() {
-        return this.forestService.findAllForest();
-    }
-
-    public void init() {
-        if (elf == null) {
-            elf = new Elf();
-        }
-//        if (elf == null && elfId != 0) {
-//            forest = forestService.findForest(forestId);
-//            elf = forestService.findForest(forestId).findElf(elfId);
-//        } else if (elf == null && elfId == 0) {
-//            elf = new Elf();
-//        }
-//        if (elf == null) {
-//            try {
-//                FacesContext.getCurrentInstance().getExternalContext().redirect("error/404.xhtml");
-//            } catch (IOException ex) {
-//                log.log(Level.SEVERE, null, ex);
-//            }
-//        }
-    }
-
     public String saveElf() {
-//       if (forest != null)
-//            forestService.saveElf(elf, forest.getId(), forestId);
-//       else
-//            elf.getForest().saveElf(elf, 0);
-//            forestService.saveElf(elf, 0, forestId);
        forestService.saveElf(elf);
        return "index?faces-redirect=true";
     }

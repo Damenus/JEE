@@ -35,8 +35,7 @@
 
                 <h:outputLabel value="Las:" for="forests"/>
                 <h:selectOneListbox id="forests" value="#{editElf.elf.forest}" converter="#{forestConverter}">
-                    <f:selectItems value="#{editElf.availableForests}" var="forest" itemValue="#{forest}"
-                                   itemLabel="#{forest.id}"/>
+                    <f:selectItems value="#{editElf.forestsAsSelectItem}" />
                 </h:selectOneListbox>
                 <h:message for="forests"/>
 
