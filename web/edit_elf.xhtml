@@ -18,7 +18,9 @@
             <h:panelGrid columns="3" styleClass="tab">
                 <h:outputLabel value="Imię:" for="name"/>
                 <h:inputText id="name"
-                             value="#{editElf.elf.name}" />
+                             value="#{editElf.elf.name}"
+                             validator="#{elfNameValidator.validate}"
+                />
                 <h:message for="name"/>
 
                 <h:outputLabel value="Liczba strzał:" for="numberArrows"/>
