@@ -44,7 +44,7 @@ public class Forest {
     @Column
     private int numberTrees;
 
-    @OneToMany(mappedBy = "forest")
+    @OneToMany(mappedBy = "forest", cascade=CascadeType.ALL, orphanRemoval=true)
 //    @JoinTable(name = "forests_elfs",
 //            joinColumns = {
 //                    @JoinColumn(name = "elfs", referencedColumnName = "id")},

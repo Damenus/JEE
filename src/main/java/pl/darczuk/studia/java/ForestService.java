@@ -16,7 +16,6 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Level;
 
-
 @ManagedBean
 @ViewScoped
 @Log
@@ -37,7 +36,6 @@ public class ForestService implements Serializable {
     }
 
     public Forest findForest(int forestId) {
-//      em.createNamedQuery(Forest.REMOVE_BY_ID, Forest.class).setParameter(forestId, 'id');
         return em.find(Forest.class, forestId);
     }
 
@@ -59,7 +57,6 @@ public class ForestService implements Serializable {
                 em.merge(elf);
             }
         });
-
 
 //        // check if elf need to be move to another forest
 //        Forest f;
@@ -86,24 +83,9 @@ public class ForestService implements Serializable {
     }
 
     public String removeForest(Forest forest) {
-//      em.createNamedQuery(Forest.REMOVE_BY_ID, Forest.class).setParameter(forest.getId(), "id"); --> not corect without transaction
-//        List<Elf> elfs = em.createNamedQuery(Elf.FIND_BY_ID_FOREST, Elf.class).setParameter(forest.getId(), "id").getResultList();
-//        for (Elf elf : elfs) {
-//            em.remove(elf);
-//        }
-        try {
-            for (Elf elf : forest.getElfs()) {
-                transactional(() -> em.remove(em.merge(elf)));
-            }
-        }
-        finally {
-            transactional(()-> em.remove(em.merge(forest)));
-        }
-
-
+        transactional(()-> em.remove(em.merge(forest)));
         return "index?faces-redirect=true";
     }
-
 
     public String removeElf(Elf elf) {
         transactional(()-> em.remove(em.merge(elf)));
