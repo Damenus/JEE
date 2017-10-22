@@ -28,12 +28,14 @@ public class ForestConverter implements Converter {
 
     public void setForestService(ForestService forestService) { this.forestService = forestService; }
 
-
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String s) {
-        if ("---".equals(s)) {
+        if (s == null) {
             return null;
         }
+//        if ("---".equals(s)) {
+//            return null;
+//        }
 
         Forest f = forestService.findForest(Integer.valueOf(s));
 
@@ -48,10 +50,9 @@ public class ForestConverter implements Converter {
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         if (o == null) {
-            return "---";
+            return null;
         }
 
-//        Integer i = forestService.findForest(((Forest) o)).getId();
         return String.valueOf(((Forest) o).getId());
     }
 }

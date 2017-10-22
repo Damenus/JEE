@@ -28,18 +28,6 @@ public class EditElf implements Serializable {
 
     @Getter
     @Setter
-    private int elfId;
-
-    @Getter
-    @Setter
-    private int forestId;
-
-    @Getter
-    @Setter
-    private String forestIdStr;
-
-    @Getter
-    @Setter
     private Elf elf;
 
     @Getter
@@ -72,10 +60,13 @@ public class EditElf implements Serializable {
         return typeBowAsSelectItem;
     }
 
+    public List<Forest> getAvailableForests() {
+        return this.forestService.findAllForest();
+    }
+
     public void init() {
         if (elf == null) {
             elf = new Elf();
-            forest = forestService.findForest(forestId);
         }
 //        if (elf == null && elfId != 0) {
 //            forest = forestService.findForest(forestId);
@@ -93,11 +84,12 @@ public class EditElf implements Serializable {
     }
 
     public String saveElf() {
-       if (forest != null)
-            forestService.saveElf(elf, forest.getId(), forestId);
-       else
-            elf.getForest().saveElf(elf, 0);
-            forestService.saveElf(elf, 0, forestId);
+//       if (forest != null)
+//            forestService.saveElf(elf, forest.getId(), forestId);
+//       else
+//            elf.getForest().saveElf(elf, 0);
+//            forestService.saveElf(elf, 0, forestId);
+       forestService.saveElf(elf);
        return "index?faces-redirect=true";
     }
 

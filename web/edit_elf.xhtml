@@ -6,9 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewParam name="elfId" value="#{editElf.elfId}" />
-        <f:viewParam name="forestId" value="#{editElf.forestId}" />
-        <f:viewParam name="forest" value="#{editElf.forest}" />
+        <f:viewParam name="forest" value="#{editElf.forest}" converter="#{forestConverter}"/>
+        <f:viewParam name="elf" value="#{editElf.elf}" converter="#{elfConverter}"/>
         <f:event type="preRenderView" listener="#{editElf.init()}"/>
     </f:metadata>
     <h:head>
@@ -36,7 +35,8 @@
 
                 <h:outputLabel value="Las:" for="forests"/>
                 <h:selectOneListbox id="forests" value="#{editElf.elf.forest}" converter="#{forestConverter}">
-                    <f:selectItems value="#{editElf.forestsAsSelectItem}" />
+                    <f:selectItems value="#{editElf.availableForests}" var="forest" itemValue="#{forest}"
+                                   itemLabel="#{forest.id}"/>
                 </h:selectOneListbox>
                 <h:message for="forests"/>
 

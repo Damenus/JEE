@@ -39,6 +39,10 @@ public class ForestService implements Serializable {
         return em.find(Forest.class, forestId);
     }
 
+    public Elf findElf(int elfId) {
+        return em.find(Elf.class, elfId);
+    }
+
     public void saveForest(Forest forest) {
         transactional(()-> {
             if (forest.getId() == null) {
@@ -50,6 +54,15 @@ public class ForestService implements Serializable {
     }
 
     public void saveElf(Elf elf, int oldForestId, int forestId) {
+        transactional(() -> {
+            if (elf.getId() == null) {
+                em.persist(elf);
+            } else {
+                em.merge(elf);
+            }
+        });
+    }
+    public void saveElf(Elf elf) {
         transactional(() -> {
             if (elf.getId() == null) {
                 em.persist(elf);
