@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JEE1.iml" filepath="$PROJECT_DIR$/JEE1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EnterpriseApp/EnterpriseApp.iml" filepath="$PROJECT_DIR$/EnterpriseApp/EnterpriseApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EnterpriseEJB/EnterpriseEJB.iml" filepath="$PROJECT_DIR$/EnterpriseEJB/EnterpriseEJB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EnterpriseLib/EnterpriseLib.iml" filepath="$PROJECT_DIR$/EnterpriseLib/EnterpriseLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EnterpriseWeb/EnterpriseWeb.iml" filepath="$PROJECT_DIR$/EnterpriseWeb/EnterpriseWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JEE.iml" filepath="$PROJECT_DIR$/JEE.iml" />
     </modules>
   </component>
 </project>

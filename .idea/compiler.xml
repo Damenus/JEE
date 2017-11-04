@@ -7,13 +7,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="JEE" />
-        <module name="JEE1" />
+        <module name="EnterpriseApp" />
+        <module name="EnterpriseEJB" />
+        <module name="EnterpriseLib" />
+        <module name="EnterpriseWeb" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="JEE" target="1.8" />
-      <module name="JEE1" target="1.8" />
+      <module name="EnterpriseApp" target="1.8" />
+      <module name="EnterpriseEJB" target="1.8" />
+      <module name="EnterpriseLib" target="1.8" />
+      <module name="EnterpriseWeb" target="1.8" />
+      <module name="JEE" target="1.5" />
+      <module name="JEE1" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
