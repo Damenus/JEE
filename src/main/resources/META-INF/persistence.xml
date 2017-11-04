@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="JEE_PU" transaction-type="JTA">
+
+        <jta-data-source>java:/elfs</jta-data-source>
+
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+        <!--<class>pl.darczuk.studia.java.ForestService</class>-->
+
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <!--<property name="hibernate.hbm2ddl.import_files" value="create"/>-->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>

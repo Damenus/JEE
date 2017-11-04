@@ -1,6 +1,7 @@
 package pl.darczuk.studia.java.entities;
 
 import lombok.*;
+import pl.darczuk.studia.java.entities.validators.Name;
 
 import javax.persistence.*;
 import java.awt.print.Book;
@@ -25,6 +26,7 @@ public class Elf {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Name
     @Column
     private String name;
 
