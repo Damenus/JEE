@@ -3,6 +3,7 @@ package pl.darczuk.studia.java.enterprise.view.converters;
 import pl.darczuk.studia.java.enterprise.ForestService;
 import pl.darczuk.studia.java.enterprise.entities.Forest;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequestScoped
 public class ForestConverter implements Converter {
 
-    @ManagedProperty("#{forestService}")
+    @EJB
     private ForestService forestService;
 
     public void setForestService(ForestService forestService) { this.forestService = forestService; }

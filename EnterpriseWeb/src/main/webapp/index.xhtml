@@ -36,7 +36,7 @@
                     </h:column>
                     <h:column>
                         <h:form>
-                            <h:commandButton value="Usuń" action="#{forestService.removeElf(elf)}"/>
+                            <h:commandButton value="Usuń" action="#{listForests.removeElf(elf)}"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>
@@ -54,7 +54,7 @@
 
             <h:column>
                 <h:form>
-                    <h:commandButton value="Usuń las" action="#{forestService.removeForest(forest)}"/>
+                    <h:commandButton value="Usuń las" action="#{listForests.removeForest(forest)}"/>
                 </h:form>
             </h:column>
 

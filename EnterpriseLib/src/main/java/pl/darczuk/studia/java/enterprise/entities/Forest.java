@@ -45,4 +45,8 @@ public class Forest {
     @OneToMany(mappedBy = "forest", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Elf> elfs;
 
+    public Forest(int numberTrees) {
+        this.numberTrees = numberTrees;
+    }
+
 }

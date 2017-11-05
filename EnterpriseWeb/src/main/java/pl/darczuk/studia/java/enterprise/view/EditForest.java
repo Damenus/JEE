@@ -6,6 +6,7 @@ import lombok.extern.java.Log;
 import pl.darczuk.studia.java.enterprise.ForestService;
 import pl.darczuk.studia.java.enterprise.entities.Forest;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -18,7 +19,7 @@ import java.util.logging.Level;
 @ManagedBean
 @Log
 public class EditForest implements Serializable {
-    @ManagedProperty("#{forestService}")
+    @EJB
     private ForestService forestService;
 
     @Getter
@@ -28,10 +29,6 @@ public class EditForest implements Serializable {
     @Getter
     @Setter
     private Forest forest;
-
-    public void setForestService(ForestService forestService) {
-        this.forestService = forestService;
-    }
 
     public void init() {
         if (forest == null && forestId != 0) {

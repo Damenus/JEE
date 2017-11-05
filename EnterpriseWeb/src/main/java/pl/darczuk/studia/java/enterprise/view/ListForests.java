@@ -1,8 +1,10 @@
 package pl.darczuk.studia.java.enterprise.view;
 
 import pl.darczuk.studia.java.enterprise.ForestService;
+import pl.darczuk.studia.java.enterprise.entities.Elf;
 import pl.darczuk.studia.java.enterprise.entities.Forest;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -13,10 +15,8 @@ import java.util.List;
 @ManagedBean
 public class ListForests implements Serializable {
 
-    @ManagedProperty("#{forestService}")
+    @EJB
     private ForestService forestService;
-
-    public void setForestService(ForestService forestService) {this.forestService = forestService; }
 
     private List<Forest> forests;
 
@@ -27,9 +27,16 @@ public class ListForests implements Serializable {
         return forests;
     }
 
-    public void removeForest(Forest forest) {
+    public String removeForest(Forest forest) {
         forestService.removeForest(forest);
         forests.remove(forest);
+        return "index?faces-redirect=true";
+    }
+
+    public String removeElf(Elf elf) {
+        forestService.removeElf(elf);
+        //forests.remove(elf);
+        return "index?faces-redirect=true";
     }
 
 }

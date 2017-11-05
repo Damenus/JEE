@@ -9,6 +9,7 @@ import pl.darczuk.studia.java.enterprise.entities.Elf;
 import pl.darczuk.studia.java.enterprise.entities.Forest;
 
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -22,7 +23,7 @@ import java.util.List;
 @Log
 public class EditElf implements Serializable {
 
-    @ManagedProperty("#{forestService}")
+    @EJB
     private ForestService forestService;
 
     @Getter
@@ -36,8 +37,6 @@ public class EditElf implements Serializable {
     private List<SelectItem> forestsAsSelectItem;
 
     private List<SelectItem> typeBowAsSelectItem;
-
-    public void setForestService(ForestService forestService) {this.forestService = forestService; }
 
     public void init() {
         if (elf == null) {
