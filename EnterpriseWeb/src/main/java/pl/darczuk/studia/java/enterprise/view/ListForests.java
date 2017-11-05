@@ -39,4 +39,9 @@ public class ListForests implements Serializable {
         return "index?faces-redirect=true";
     }
 
+    public String reinforcement(int numberBow) {
+        forestService.reinforcement(numberBow);
+        return "index?faces-redirect=true";
+    }
+
 }

@@ -15,10 +15,12 @@ import javax.persistence.*;
 @Table(name = "elfs")
 @NamedQueries({
         @NamedQuery(name = Elf.FIND_ALL, query = "SELECT e FROM Elf e"),
+        @NamedQuery(name = Elf.REINFORCEMENT, query = "UPDATE Elf e SET e.numberArrows = e.numberArrows + :numberBow")
 })
 public class Elf {
 
     public static final String FIND_ALL = "Elf.findAll";
+    public static final String REINFORCEMENT = "Elf.reinforcement";
 
     @Column
     @Id
@@ -38,7 +40,6 @@ public class Elf {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "forest_id", nullable = false)
     private Forest forest;
-
 
     public Elf(String name, int numberArrows, Bow typeBow, Forest forest) {
         this.name = name;

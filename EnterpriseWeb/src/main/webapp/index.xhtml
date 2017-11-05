@@ -63,5 +63,16 @@
         <h:button value="Nowy las" outcome="edit_forest.xhtml"/>
         <h:button value="Nowy elf" outcome="edit_elf.xhtml"/>
 
+        <h:form>
+            <h:panelGrid columns="4" styleClass="tabela">
+                <h:outputLabel value="Liczba strzał:" for="numberBow"/>
+                <h:inputText id="numberBow" binding="#{numberBow}"/>
+                <h:message for="numberBow"/>
+            </h:panelGrid>
+            <h:commandButton value="Zbrój elfy" action="#{listForests.reinforcement(numberBow.value)}"/>
+        </h:form>
+
+
+
     </h:body>
 </html>

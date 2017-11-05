@@ -43,6 +43,10 @@ public class ForestService implements Serializable {
         return em.find(Elf.class, elfId);
     }
 
+    public void reinforcement(int numberBow) {
+        em.createNamedQuery(Elf.REINFORCEMENT).setParameter("numberBow",numberBow).executeUpdate();
+    }
+
     public void saveForest(Forest forest) {
 //        transactional(()-> {
 //            if (forest.getId() == null) {
