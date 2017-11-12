@@ -7,6 +7,7 @@ import pl.darczuk.studia.java.enterprise.forest.ForestService;
 import pl.darczuk.studia.java.enterprise.entities.Bow;
 import pl.darczuk.studia.java.enterprise.entities.Elf;
 import pl.darczuk.studia.java.enterprise.entities.Forest;
+import pl.darczuk.studia.java.enterprise.users.UserService;
 
 
 import javax.ejb.EJB;
@@ -24,6 +25,9 @@ public class EditElf implements Serializable {
 
     @EJB
     private ForestService forestService;
+
+    @EJB
+    UserService userService;
 
     @Getter
     @Setter

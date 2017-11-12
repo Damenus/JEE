@@ -2,7 +2,7 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     <persistence-unit name="JEE_PU" transaction-type="JTA">
 
-        <jta-data-source>java:/elfs</jta-data-source>
+        <jta-data-source>java:/elfs-jaas</jta-data-source>
 
         <class>pl.darczuk.studia.java.enterprise.entities.Elf</class>
         <class>pl.darczuk.studia.java.enterprise.entities.Forest</class>
@@ -11,12 +11,18 @@
         <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
         <!--<class>pl.darczuk.studia.java.ForestService</class>-->
 
+        <shared-cache-mode>ALL</shared-cache-mode>
+
         <properties>
             <!--<property name="hibernate.show_sql" value="true"/>-->
             <!--<property name="hibernate.format_sql" value="true"/>-->
             <!--<property name="hibernate.hbm2ddl.import_files" value="create"/>-->
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+
+            <!--<property name="javax.persistence.schema-generation.database.action" value= "create"/>-->
+            <!--<property name="javax.persistence.schema-generation.create-script-source" value= "{path to your create.sq}l"/>-->
+
         </properties>
     </persistence-unit>
 </persistence>

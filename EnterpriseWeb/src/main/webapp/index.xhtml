@@ -1,78 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Lasy</title>
-    </h:head>
-    <h:body>
-        <h:dataTable value="#{listForests.forests}" var="forest">
-            <h:column>
-                <h:outputText value="#{forest.id}"/>
-            </h:column>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/WEB-INF/templates/main.xhtml">
 
-            <h:column>
-                <h:dataTable value="#{forest.elfs}" var="elf">
-                    <h:column>
-                        <h:outputText value="#{elf.id}"/>
-                    </h:column>
-                    <h:column>
-                        <h:outputText value="#{elf.name}"/>
-                    </h:column>
-                    <h:column>
-                        <h:outputText value="#{elf.numberArrows}"/>
-                    </h:column>
-                    <h:column>
-                        <h:outputText value="#{elf.typeBow}"/>
-                    </h:column>
-                    <h:column>
-                        <h:button value="Edytuj" outcome="edit_elf.xhtml">
-                            <f:param name="forest" value="#{forest.id}"/>
-                            <f:param name="elf" value="#{elf.id}"/>
-                        </h:button>
-                    </h:column>
-                    <h:column>
-                        <h:form>
-                            <h:commandButton value="Usuń" action="#{listForests.removeElf(elf)}"/>
-                        </h:form>
-                    </h:column>
-                </h:dataTable>
-            </h:column>
+    <ui:define name="head">
+        <title>#{msg.forests}</title>
+    </ui:define>
 
-            <h:column>
-                <h:outputText value="#{forest.numberTrees}"/>
-            </h:column>
-
-            <h:column>
-                <h:button value="Edytuj" outcome="edit_forest.xhtml">
-                    <f:param name="forestId" value="#{forest.id}"/>
-                </h:button>
-            </h:column>
-
-            <h:column>
-                <h:form>
-                    <h:commandButton value="Usuń las" action="#{listForests.removeForest(forest)}"/>
-                </h:form>
-            </h:column>
-
-        </h:dataTable>
-
-        <h:button value="Nowy las" outcome="edit_forest.xhtml"/>
-        <h:button value="Nowy elf" outcome="edit_elf.xhtml"/>
-
-        <h:form>
-            <h:panelGrid columns="4" styleClass="tabela">
-                <h:outputLabel value="Liczba strzał:" for="numberBow"/>
-                <h:inputText id="numberBow" binding="#{numberBow}"/>
-                <h:message for="numberBow"/>
-            </h:panelGrid>
-            <h:commandButton value="Zbrój elfy" action="#{listForests.reinforcement(numberBow.value)}"/>
-        </h:form>
+    <ui:define name="content">
+        <h:link outcome="elfs/list.xhtml" value="#{msg.forests}"/>
+        <br/>
+        <h:link outcome="admin/list_users.xhtml" value="#{msg.users}"/>
+        <br/>
+        <h:link outcome="auth/custom/login_form.xhtml" value="#{msg.login}" rendered="#{not authContext.authenticated}"/>
+        <br/>
 
 
+    </ui:define>
 
-    </h:body>
-</html>
+</ui:composition>

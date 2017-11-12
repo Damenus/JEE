@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.extern.java.Log;
 import pl.darczuk.studia.java.enterprise.forest.ForestService;
 import pl.darczuk.studia.java.enterprise.entities.Forest;
+import pl.darczuk.studia.java.enterprise.users.UserService;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -20,6 +21,9 @@ import java.util.logging.Level;
 public class EditForest implements Serializable {
     @EJB
     private ForestService forestService;
+
+    @EJB
+    UserService userService;
 
     @Getter
     @Setter

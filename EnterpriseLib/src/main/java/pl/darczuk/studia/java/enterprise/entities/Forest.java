@@ -3,6 +3,7 @@ package pl.darczuk.studia.java.enterprise.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @ToString
@@ -26,7 +27,7 @@ import java.util.List;
         )
 })
 // Query query = session.getNamedQuery("findByName").setString("id", "7277");
-public class Forest {
+public class Forest extends Audit implements Serializable {
 
     public static class Queries {
         public static final String FIND_ALL = "Forest.findAll";

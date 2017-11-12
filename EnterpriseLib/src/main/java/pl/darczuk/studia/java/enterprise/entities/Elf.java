@@ -4,6 +4,7 @@ import lombok.*;
 import pl.darczuk.studia.java.enterprise.entities.validators.Name;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @ToString(of = "name")
 @EqualsAndHashCode(of = "id")
@@ -16,7 +17,7 @@ import javax.persistence.*;
         @NamedQuery(name = Elf.Queries.COUNT_ALL, query = "SELECT COUNT(a) FROM Elf a"),
         @NamedQuery(name = Elf.Queries.REINFORCEMENT, query = "UPDATE Elf e SET e.numberArrows = e.numberArrows + :numberBow")
 })
-public class Elf {
+public class Elf extends Audit implements Serializable {
 
     public static class Queries {
         public static final String FIND_ALL = "Elf.findAll";

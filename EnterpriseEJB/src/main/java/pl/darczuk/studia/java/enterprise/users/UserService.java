@@ -1,15 +1,23 @@
 package pl.darczuk.studia.java.enterprise.users;
 
+import lombok.extern.java.Log;
 import pl.darczuk.studia.java.enterprise.entities.User;
 
 import javax.annotation.Resource;
+import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Stateless
+@LocalBean
+@Log
+@DeclareRoles(value = {"Admin", "User"})
 public class UserService {
     @PersistenceContext
     EntityManager em;

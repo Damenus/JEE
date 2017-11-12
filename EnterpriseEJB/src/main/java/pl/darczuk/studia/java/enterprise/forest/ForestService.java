@@ -28,8 +28,6 @@ public class ForestService implements Serializable {
     @Resource
     SessionContext sessionCtx;
 
-    public ForestService() {}
-
     @PermitAll
     public List<Forest> findAllForest() {
         return em.createNamedQuery(Forest.Queries.FIND_ALL, Forest.class).getResultList();

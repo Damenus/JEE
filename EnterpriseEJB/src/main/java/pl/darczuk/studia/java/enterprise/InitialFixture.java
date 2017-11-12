@@ -30,31 +30,38 @@ public class InitialFixture {
 
     @PostConstruct
     public void init() {
-        List<User> users = asList(
-                new User("admin", CryptUtils.sha256("admin"), asList(User.Roles.ADMIN, User.Roles.USER)),
-                new User("user1", CryptUtils.sha256("pass1"), asList(User.Roles.USER)),
-                new User("user2", CryptUtils.sha256("pass2"), asList(User.Roles.USER))
-        );
 
-        users.forEach(user -> em.persist(user));
-        em.flush();
+        Long authorsCount = em.createNamedQuery(Elf.Queries.COUNT_ALL, Long.class).getSingleResult();
 
-        List<Forest> forests = asList(
-                new Forest(12,users.get(1)),
-                new Forest(144,users.get(2))
-        );
+//        if (authorsCount == 0) {
+//            List<User> users = asList(
+//                    new User("admin1", CryptUtils.sha256("admin"), asList(User.Roles.ADMIN, User.Roles.USER)),
+//                    new User("user1", CryptUtils.sha256("pass1"), asList(User.Roles.USER)),
+//                    new User("user2", CryptUtils.sha256("pass2"), asList(User.Roles.USER))
+//            );
+//
+//            users.forEach(user -> em.persist(user));
+//            em.flush();
 
-        forests.forEach(forest -> em.persist(forest));
-        em.flush();
+//            List<Forest> forests = asList(
+//                    new Forest(12, users.get(1)),
+//                    new Forest(144, users.get(2))
+//            );
+//
+//            forests.forEach(forest -> em.persist(forest));
+//            em.flush();
+//
+//            List<Elf> elfs = asList(
+//                    new Elf("Franke", 1200, Bow.EPIC, forests.get(0)),
+//                    new Elf("Teosle", 100, Bow.COMMON, forests.get(0)),
+//                    new Elf("Elfik", 144, Bow.RARE, forests.get(1)),
+//                    new Elf("Michalke", 1, Bow.RARE, forests.get(1))
+//            );
+//
+//            elfs.forEach(book -> em.persist(book));
+//        }
 
-        List<Elf> elfs = asList(
-                new Elf("Franke", 1200, Bow.EPIC, forests.get(0)),
-                new Elf("Teosle", 100, Bow.COMMON, forests.get(0)),
-                new Elf("Elfik", 144, Bow.RARE, forests.get(1)),
-                new Elf("Michalke", 1, Bow.RARE, forests.get(1))
-        );
-
-        elfs.forEach(book -> em.persist(book));
-
+        User user = new User("admin1", CryptUtils.sha256("admin"), asList(User.Roles.ADMIN, User.Roles.USER));
+        em.persist(user);
     }
 }
