@@ -9,34 +9,41 @@ import javax.persistence.*;
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "elfs")
 @NamedQueries({
-        @NamedQuery(name = Elf.FIND_ALL, query = "SELECT e FROM Elf e"),
-        @NamedQuery(name = Elf.REINFORCEMENT, query = "UPDATE Elf e SET e.numberArrows = e.numberArrows + :numberBow")
+        @NamedQuery(name = Elf.Queries.FIND_ALL, query = "SELECT e FROM Elf e"),
+        @NamedQuery(name = Elf.Queries.COUNT_ALL, query = "SELECT COUNT(a) FROM Elf a"),
+        @NamedQuery(name = Elf.Queries.REINFORCEMENT, query = "UPDATE Elf e SET e.numberArrows = e.numberArrows + :numberBow")
 })
 public class Elf {
 
-    public static final String FIND_ALL = "Elf.findAll";
-    public static final String REINFORCEMENT = "Elf.reinforcement";
+    public static class Queries {
+        public static final String FIND_ALL = "Elf.findAll";
+        public static final String COUNT_ALL = "Elf.countAll";
+        public static final String REINFORCEMENT = "Elf.reinforcement";
+    }
 
-    @Column
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Name
-    @Column
+    @Getter
+    @Setter
     private String name;
 
-    @Column
+    @Getter
+    @Setter
     private int numberArrows;
 
+    @Getter
+    @Setter
     @Enumerated(EnumType.STRING)
     private Bow typeBow;
 
+    @Getter
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "forest_id", nullable = false)
     private Forest forest;

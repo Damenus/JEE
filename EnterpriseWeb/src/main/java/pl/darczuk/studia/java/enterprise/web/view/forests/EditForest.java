@@ -1,14 +1,13 @@
-package pl.darczuk.studia.java.enterprise.view;
+package pl.darczuk.studia.java.enterprise.web.view.forests;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.java.Log;
-import pl.darczuk.studia.java.enterprise.ForestService;
+import pl.darczuk.studia.java.enterprise.forest.ForestService;
 import pl.darczuk.studia.java.enterprise.entities.Forest;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import java.io.IOException;

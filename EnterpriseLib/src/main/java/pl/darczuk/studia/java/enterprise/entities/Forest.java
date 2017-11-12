@@ -9,13 +9,11 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name="forests")
 @NamedQueries({
         @NamedQuery(
-                name = Forest.FIND_ALL,
+                name = Forest.Queries.FIND_ALL,
                 query = "SELECT f FROM Forest f"
         ),
         @NamedQuery(
@@ -23,30 +21,41 @@ import java.util.List;
                 query = "SELECT f FROM Forest f WHERE f.id = :id"
         ),
         @NamedQuery(
-                name = Forest.REMOVE_BY_ID,
+                name = Forest.Queries.REMOVE_BY_ID,
                 query = "DELETE FROM Forest f WHERE f.id = :id"
         )
 })
 // Query query = session.getNamedQuery("findByName").setString("id", "7277");
 public class Forest {
 
-    public static final String FIND_ALL = "Forest.findAll";
-    public static final String FIND_BY_NAME = "Forest.findByName";
-    public static final String REMOVE_BY_ID = "Forest.removeById";
+    public static class Queries {
+        public static final String FIND_ALL = "Forest.findAll";
+        public static final String FIND_BY_NAME = "Forest.findByName";
+        public static final String REMOVE_BY_ID = "Forest.removeById";
+    }
 
-    @Column
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Getter
+    @Setter
     private int numberTrees;
 
+    @Getter
+    @Setter
     @OneToMany(mappedBy = "forest", cascade=CascadeType.ALL, orphanRemoval=true)
     private List<Elf> elfs;
 
-    public Forest(int numberTrees) {
+    @Getter
+    @Setter
+    @ManyToOne
+    private User owner;
+
+    public Forest(int numberTrees, User owner) {
         this.numberTrees = numberTrees;
+        this.owner = owner;
     }
 
 }

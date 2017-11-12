@@ -6,6 +6,7 @@
 
         <class>pl.darczuk.studia.java.enterprise.entities.Elf</class>
         <class>pl.darczuk.studia.java.enterprise.entities.Forest</class>
+        <class>pl.darczuk.studia.java.enterprise.entities.User</class>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
         <!--<class>pl.darczuk.studia.java.ForestService</class>-->

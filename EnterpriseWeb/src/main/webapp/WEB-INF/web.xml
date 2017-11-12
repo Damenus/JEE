@@ -24,4 +24,56 @@
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
+
+    <error-page>
+        <exception-type>javax.ejb.EJBAccessException</exception-type>
+        <location>/error/403.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/error/403.xhtml</location>
+    </error-page>
+
+    <security-constraint>
+        <display-name>admin panel</display-name>
+        <web-resource-collection>
+            <web-resource-name>admin panel</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+        <!--<user-data-constraint>-->
+        <!--<transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
+        <!--</user-data-constraint>-->
+    </security-constraint>
+
+
+    <security-constraint>
+        <display-name>elfs management</display-name>
+        <web-resource-collection>
+            <web-resource-name>elfs management</web-resource-name>
+            <url-pattern>/elfs/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>USER</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>elfs</realm-name>
+        <form-login-config>
+            <form-login-page>/auth/login.xhtml</form-login-page>
+            <form-error-page>/auth/login_error.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USER</role-name>
+    </security-role>
 </web-app>

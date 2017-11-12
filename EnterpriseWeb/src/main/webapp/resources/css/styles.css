@@ -1,0 +1,12 @@
+
+root {
+    display: block;
+}
+
+table, tr, td, th {
+    border: 1px solid black;
+}
+
+table.login-form, table.login-form tr, table.login-form td {
+    border: 0;
+}

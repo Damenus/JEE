@@ -15,5 +15,30 @@ if (outcome != success) of /subsystem=datasources/data-source=elfs:read-resource
 end-if
 
 
-#n Załadowanie nowej konfiguracji w uruchomionym serwerze
+# Domena bezpieczeństwa
+if (outcome != success) of /subsystem=security/security-domain=elfs-jaas:read-resource
+    /subsystem=security/security-domain=elfs-jaas:add(cache-type="default")
+
+# Metoda uwierzytelniania dla domeny bezpieczeństwa
+    /subsystem=security/security-domain=elfs-jaas \
+     /authentication=classic:add( \
+       login-modules=[ { \
+         code="Database", \
+         flag="required", \
+         module-options={ \
+           dsJndiName="java:/elfs-jaas", \
+           principalsQuery="select PASSWORD from USER where LOGIN=?", \
+           rolesQuery="select ur.ROLES, 'Roles' \
+                       from USER_ROLES ur JOIN USER u ON u.ID = ur.USER_ID \
+                       where u.LOGIN = ?", \
+           hashAlgorithm="SHA-256", \
+           hashEncoding="hex", \
+           unauthenticatedIdentity="guest" \
+         } \
+       } \
+     ])
+end-if
+
+
+# Załadowanie nowej konfiguracji w uruchomionym serwerze
 :reload

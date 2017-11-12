@@ -1,4 +1,4 @@
-package pl.darczuk.studia.java.enterprise.view.validators;
+package pl.darczuk.studia.java.enterprise.web.validators;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
